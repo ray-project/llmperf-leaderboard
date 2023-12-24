@@ -30,7 +30,14 @@ For each provider, we perform:
 - Expected output length:       150
 - Tested models:                7B, 13B, and 70B of LLama-2 chat models
 
-(Results as of December 20, 2023)
+(Results as of December 22, 2023)
+
+Note that there may be some possible source of biases or discrepancies from your perceived behavior:
+
+1. Our measurement of TTFT depends on client location, and can also be biased by some providers lagging on the first token in order to increase ITL. Our current measurement location is from us-west (Oregon).
+
+2. Measured ITL is not a true reflection of the system capabilities but is also impacted by the existing system load and provider traffic.
+
 
 ### Time to First Token (seconds)
 
@@ -47,7 +54,7 @@ For streaming applications, the TTFT is how long before the LLM returns the firs
 | bedrock    | meta.llama2-70b-chat-v1                                                                              | 0.38    | 0.40   | 0.29  | 1.16  | 0.37  | 0.41  | 0.50  | 0.60  |
 | fireworks  | accounts/fireworks/models/llama-v2-70b-chat                                                          | 0.51    | 0.51   | 0.32  | 0.96  | 0.39  | 0.56  | 0.79  | 0.95  |
 | lepton     | llama2-70b                                                                                           | 0.77    | 0.79   | 0.64  | 0.91  | 0.74  | 0.87  | 0.91  | 0.91  |
-| perplexity | llama-2-70b-chat                                                                                     | 0.35    | 0.42   | 0.28  | 0.98  | 0.32  | 0.53  | 0.62  | 0.77  |
+| perplexity | llama-2-70b-chat | 0.37 | 0.42 | 0.29 | 0.70 | 0.34 | 0.52 | 0.63 | 0.66 |
 | replicate  | meta/llama-2-70b-chat                  | 13.30   | 20.12  | 1.55  | 48.91 | 9.61  | 31.29 | 47.78 | 48.83 |
 | together   | together_ai/togethercomputer/llama-2-70b-chat                                                        | 0.63    | 0.62   | 0.46  | 0.89  | 0.55  | 0.67  | 0.77  | 0.87  |
 
@@ -105,7 +112,7 @@ Note that the calculation of inter-token latency (ITL) doesn't include TTFT. In 
 | bedrock    | meta.llama2-70b-chat-v1                             | 46.53     | 47.37     | 45.03     | 52.96     | 46.03    | 48.03    | 52.02    | 52.68    |
 | fireworks  | accounts/fireworks/models/llama-v2-70b-chat         | 25.17     | 25.23     | 21.98     | 30.34     | 24.00    | 26.22    | 28.02    | 29.93    |
 | lepton     | llama2-70b                                          | 28.42     | 28.34     | 27.22     | 28.99     | 28.21    | 28.72    | 28.92    | 28.98    |
-| perplexity | llama-2-70b-chat                                    | 31.05     | 33.65     | 22.95     | 103.52    | 29.25    | 35.94    | 49.46    | 77.38    |
+| perplexity | llama-2-70b-chat | 33.01 | 33.86 | 22.53 | 112.26| 32.26 | 34.86 | 38.14 | 41.17 |
 | replicate  | meta/llama-2-70b-chat                               | 192.00    | 245.56    | 99.03     | 469.01    | 164.94   | 333.88   | 464.73   | 468.84   |
 | together   | together_ai/togethercomputer/llama-2-70b-chat       | 15.35     | 15.80     | 12.59     | 40.12     | 14.61    | 16.20    | 19.29    | 23.01    |
 
@@ -165,4 +172,4 @@ The success rate is calculated by sending 150 requests to each LLM inference pro
 # Feedbacks
 
 - Kindly provide your feedback using the [link](https://github.com/ray-project/llmperf-leaderboard/issues/new). We would love to hear from you.
- - For LLM inference service providers interested in having their API featured on this dashboard, please submit an issue or reach out to us via [email](mailto:endpoints-help@anyscale.com) for further communication (e.g. setting up of test accounts and etc).
+- For LLM inference service providers interested in having their API featured on this dashboard, please submit an issue or reach out to us via [email](mailto:endpoints-help@anyscale.com) for further communication (e.g. setting up of test accounts and etc).
