@@ -1,0 +1,3 @@
+This folder contains the direct outputs from running LLMPerf. We used this data to populate the leaderboard.
+The data schema is subject to changes, and for more details, please see https://github.com/ray-project/llmperf
+
