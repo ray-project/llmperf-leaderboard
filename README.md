@@ -1,8 +1,8 @@
 # LLMPerf Leaderboard :trophy:
 Utilizing the [LLMPerf](https://github.com/ray-project/llmperf), we have benchmarked a selection of LLM inference providers.
 Our analysis focuses on evaluating their performance, reliability, and efficiency under the following key metrics:
+- Output tokens throughput, which represents the average number of output tokens returned per second. This metric is important for applications that require high throughput, such as summarization and translation, and easy to compare across different models and providers. 
 - Time to first token (TTFT), which represents the duration of time that LLM returns the first token. TTFT is especially important for streaming applications, such as chatbots. 
-- Inter-token latency: The average time between consecutive tokens.
 
 The LLMPerf Leaderboard displays results in a clear, transparent manner. Our aim is to provide users and developers with vital insights into the capabilities and limitations of each provider, informing decisions for future integrations and deployments. In line with our commitment to transparency and utility, we also provide reproducible steps in [Run Configurations](#run-configurations) as shown below:
 
@@ -42,6 +42,51 @@ Note that there may be some possible source of biases or discrepancies from your
 - The results is only a proxy of the system capabilities and is also impacted by the existing system load and provider traffic.
 - The results may not correlate with users’ workloads.
 
+
+### Output Tokens Throughput (tokens/s)
+
+The output tokens throughput is measured as the average number of **output** tokens returned per second. We collect results by sending 150 requests to each LLM inference provider, and calculate the mean output tokens throughput based on 150 requests. A higher output tokens throughput indicates a higher throughput of the LLM inference provider. 
+
+####  70B Models
+
+<img src=".assets/output_tokens_per_s.jpg">
+
+| Framework   | Model                                         |   Median |   Mean |   Min |   Max |   P25 |   P75 |   P95 |   P99 |
+|:------------|:----------------------------------------------|---------:|-------:|------:|------:|------:|------:|------:|------:|
+| anyscale    | meta-llama/Llama-2-70b-chat-hf                |       66 |     63 |    22 |    86 |    56 |    72 |    77 |    82 |
+| bedrock     | meta.llama2-70b-chat-v1                       |       21 |     21 |    13 |    22 |    20 |    22 |    22 |    22 |
+| fireworks   | accounts/fireworks/models/llama-v2-70b-chat   |       40 |     40 |    33 |    46 |    38 |    42 |    45 |    46 |
+| lepton      | llama2-70b                                    |       33 |     33 |    31 |    39 |    32 |    34 |    34 |    38 |
+| perplexity  | llama-2-70b-chat                              |       30 |     30 |     8 |    44 |    29 |    31 |    36 |    44 |
+| replicate   | meta/llama-2-70b-chat                         |       10 |      9 |     2 |    11 |    10 |    10 |    11 |    11 |
+| together    | together_ai/togethercomputer/llama-2-70b-chat |       65 |     64 |    25 |    79 |    61 |    68 |    74 |    76 |
+
+
+####  13B Models
+
+<img src=".assets/output_tokens_per_s_13b.jpg">
+
+| Framework   | Model                                         |   Median |   Mean |   Min |   Max |   P25 |   P75 |   P95 |   P99 |
+|:------------|:----------------------------------------------|---------:|-------:|------:|------:|------:|------:|------:|------:|
+| anyscale    | meta-llama/Llama-2-13b-chat-hf                |      120 |    120 |    81 |   156 |   110 |   128 |   141 |   148 |
+| bedrock     | meta.llama2-13b-chat-v1                       |       36 |     35 |    19 |    39 |    33 |    38 |    38 |    39 |
+| fireworks   | accounts/fireworks/models/llama-v2-13b-chat   |       42 |     42 |    39 |    45 |    41 |    43 |    44 |    44 |
+| lepton      | llama2-13b                                    |       43 |     43 |    37 |    48 |    42 |    44 |    46 |    48 |
+| replicate   | meta/llama-2-13b-chat                         |       16 |     18 |     6 |    35 |    12 |    20 |    35 |    35 |
+| together    | together_ai/togethercomputer/llama-2-13b-chat |      102 |    101 |     1 |   123 |    98 |   108 |   119 |   122 |
+
+
+#### 7B Models
+
+<img src=".assets/output_tokens_per_s_7b.jpg">
+
+| Framework   | Model                                        |   Median |   Mean |   Min |   Max |   P25 |   P75 |   P95 |   P99 |
+|:------------|:---------------------------------------------|---------:|-------:|------:|------:|------:|------:|------:|------:|
+| anyscale    | meta-llama/Llama-2-7b-chat-hf                |       51 |     51 |    45 |    57 |    49 |    54 |    56 |    57 |
+| fireworks   | accounts/fireworks/models/llama-v2-7b-chat   |       76 |     76 |    53 |    82 |    75 |    78 |    79 |    82 |
+| lepton      | llama2-7b                                    |       36 |     36 |    33 |    40 |    35 |    38 |    40 |    40 |
+| replicate   | meta/llama-2-7b-chat                         |       26 |     32 |     2 |    78 |    20 |    35 |    73 |    77 |
+| together    | together_ai/togethercomputer/llama-2-7b-chat |       75 |     75 |    50 |    95 |    70 |    81 |    87 |    90 |
 
 ### Time to First Token (seconds)
 
@@ -99,57 +144,8 @@ For streaming applications, the TTFT is how long before the LLM returns the firs
 
 > \* Bedrock doesn't offer Llama-2-7B models when the data was gathered. More details for models offered could be found [here](https://aws.amazon.com/bedrock/llama-2/).
 
-### Inter Token Latency (ms)
 
-Inter-token latency is measured as the average time between consecutive tokens in a LLM request excluding the time-to-first token. We collect results by sending 150 requests to each LLM inference provider, and calculate the mean ITL and percentiles based on 150 requests.
-
-
-Note that the calculation of inter-token latency (ITL) doesn't include TTFT. In the context of a response with an output token length of N, the total end-to-end response time is equal to `TTFT + (N-1) * ITL`.
-
-####  70B Models
-
-<img src=".assets/itl.jpg">
-
-| Framework  | Model                                               | Median | Mean | Min | Max  | P25 | P75 | P95 | P99 |
-|------------|-----------------------------------------------------|--------|------|-----|------|-----|-----|-----|-----|
-| anyscale   | meta-llama/Llama-2-70b-chat-hf                      | 15     | 16   | 11  | 43   | 13  | 17  | 23  | 39  |
-| bedrock    | meta.llama2-70b-chat-v1                             | 46     | 47   | 45  | 54   | 46  | 47  | 52  | 54  |
-| fireworks  | accounts/fireworks/models/llama-v2-70b-chat         | 25     | 25   | 22  | 30   | 24  | 26  | 28  | 30  |
-| lepton     | llama2-70b                                          | 30     | 30   | 25  | 32   | 30  | 31  | 32  | 32  |
-| perplexity | llama-2-70b-chat                                    | 33     | 34   | 23  | 112  | 32  | 35  | 38  | 41  |
-| replicate  | meta/llama-2-70b-chat                               | 97     | 128  | 91  | 647  | 96  | 99  | 273 | 592 |
-| together   | together_ai/togethercomputer/llama-2-70b-chat       | 15     | 16   | 13  | 40   | 15  | 16  | 19  | 23  |
-
-
-####  13B Models
-
-<img src=".assets/itl_13b.jpg">
-
-| Framework   | Model                                             | Median | Mean | Min | Max | P25 | P75 | P95 | P99 |
-|-------------|---------------------------------------------------|--------|------|-----|-----|-----|-----|-----|-----|
-| anyscale    | meta-llama/Llama-2-13b-chat-hf                    | 9      | 9    | 7   | 13  | 8   | 9   | 10  | 11  |
-| bedrock     | meta.llama2-13b-chat-v1                           | 27     | 27   | 26  | 30  | 26  | 27  | 30  | 30  |
-| fireworks   | accounts/fireworks/models/llama-v2-13b-chat       | 21     | 21   | 19  | 23  | 21  | 21  | 22  | 22  |
-| lepton      | llama2-13b                                        | 23     | 23   | 21  | 27  | 23  | 24  | 25  | 26  |
-| replicate   | meta/llama-2-13b-chat                             | 61     | 70   | 28  | 179 | 49  | 86  | 140 | 151 |
-| together    | together_ai/togethercomputer/llama-2-13b-chat     | 10     | 18   | 8   | 23  | 9   | 10  | 12  | 20  |
-
-
-#### 7B Models
-
-<img src=".assets/itl_7b.jpg">
-
-| Framework | Model                                                    | Median | Mean | Min | Max  | P25 | P75 | P95 | P99 |
-|-----------|----------------------------------------------------------|--------|------|-----|------|-----|-----|-----|-----|
-| anyscale  | meta-llama/Llama-2-7b-chat-hf                            | 17     | 17   | 16  | 20   | 16  | 17  | 19  | 20  |
-| fireworks | accounts/fireworks/models/llama-v2-7b-chat               | 13     | 13   | 12  | 19   | 13  | 13  | 14  | 17  |
-| lepton    | llama2-7b                                                | 28     | 28   | 25  | 31   | 26  | 29  | 30  | 30  |
-| replicate | meta/llama-2-7b-chat                                     | 39     | 44   | 13  | 576  | 24  | 50  | 61  | 189 |
-| together  | together_ai/togethercomputer/llama-2-7b-chat             | 13     | 14   | 11  | 20   | 12  | 14  | 17  | 19  |
-
-
-
-# Feedbacks
+# Feedback
 
 - Kindly provide your feedback using the [link](https://github.com/ray-project/llmperf-leaderboard/issues/new). We would love to hear from you.
  - For LLM inference service providers interested in having their API featured on this dashboard, please submit an issue or reach out to us via [email](mailto:endpoints-help@anyscale.com) for further communication (e.g. setting up of test accounts and etc).
