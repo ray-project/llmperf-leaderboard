@@ -60,7 +60,7 @@ The output tokens throughput is measured as the average number of **output** tok
 | perplexity  | llama-2-70b-chat                              |       30 |     30 |     8 |    44 |    29 |    31 |    36 |    44 |
 | replicate   | meta/llama-2-70b-chat                         |       10 |      9 |     2 |    11 |    10 |    10 |    11 |    11 |
 | together    | together_ai/togethercomputer/llama-2-70b-chat |       65 |     64 |    25 |    79 |    61 |    68 |    74 |    76 |
-
+| groq        | llama2-70b-4096                               |      185 |    184 |   148 |   208 |   174 |   195 |   207 |   208 |
 
 ####  13B Models
 
@@ -74,7 +74,6 @@ The output tokens throughput is measured as the average number of **output** tok
 | lepton      | llama2-13b                                    |       43 |     43 |    37 |    48 |    42 |    44 |    46 |    48 |
 | replicate   | meta/llama-2-13b-chat                         |       16 |     18 |     6 |    35 |    12 |    20 |    35 |    35 |
 | together    | together_ai/togethercomputer/llama-2-13b-chat |      102 |    101 |     1 |   123 |    98 |   108 |   119 |   122 |
-
 
 #### 7B Models
 
@@ -106,7 +105,7 @@ For streaming applications, the TTFT is how long before the LLM returns the firs
 | perplexity | llama-2-70b-chat | 0.37 | 0.42 | 0.29 | 0.70 | 0.34 | 0.52 | 0.63 | 0.66 |
 | replicate   | meta/llama-2-70b-chat |     1.19 |   5.08 |  0.97 | 71.57 |  1.03 |   1.7 | 24.23 | 63.63 |
 | together   | together_ai/togethercomputer/llama-2-70b-chat                                                        | 0.63    | 0.62   | 0.46  | 0.89  | 0.55  | 0.67  | 0.77  | 0.87  |
-
+i| groq        | llama2-70b-4096                               |     0.22 |   0.23 |  0.17 |  0.36 |  0.19 |  0.24 |  0.3  |  0.35 |
 
 #### 13B Models
 
