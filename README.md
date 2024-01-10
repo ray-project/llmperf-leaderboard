@@ -56,11 +56,11 @@ The output tokens throughput is measured as the average number of **output** tok
 | anyscale    | meta-llama/Llama-2-70b-chat-hf                |       66 |     63 |    22 |    86 |    56 |    72 |    77 |    82 |
 | bedrock     | meta.llama2-70b-chat-v1                       |       21 |     21 |    13 |    22 |    20 |    22 |    22 |    22 |
 | fireworks   | accounts/fireworks/models/llama-v2-70b-chat   |       40 |     40 |    33 |    46 |    38 |    42 |    45 |    46 |
+| groq        | llama2-70b-4096                               |      185 |    184 |   148 |   208 |   174 |   195 |   207 |   208 |
 | lepton      | llama2-70b                                    |       33 |     33 |    31 |    39 |    32 |    34 |    34 |    38 |
 | perplexity  | llama-2-70b-chat                              |       30 |     30 |     8 |    44 |    29 |    31 |    36 |    44 |
 | replicate   | meta/llama-2-70b-chat                         |       10 |      9 |     2 |    11 |    10 |    10 |    11 |    11 |
 | together    | together_ai/togethercomputer/llama-2-70b-chat |       65 |     64 |    25 |    79 |    61 |    68 |    74 |    76 |
-| groq        | llama2-70b-4096                               |      185 |    184 |   148 |   208 |   174 |   195 |   207 |   208 |
 
 ####  13B Models
 
@@ -101,11 +101,11 @@ For streaming applications, the TTFT is how long before the LLM returns the firs
 | anyscale   | meta-llama/Llama-2-70b-chat-hf                                                                      | 0.21    | 0.25   | 0.18  | 0.59  | 0.19  | 0.30  | 0.36  | 0.47  |
 | bedrock     | meta.llama2-70b-chat-v1 |     0.39 |   0.41 |  0.29 |  0.72 |  0.37 |  0.41 |  0.54 |  0.69 |
 | fireworks  | accounts/fireworks/models/llama-v2-70b-chat                                                          | 0.51    | 0.51   | 0.32  | 0.96  | 0.39  | 0.56  | 0.79  | 0.95  |
+| groq        | llama2-70b-4096                               |     0.22 |   0.23 |  0.17 |  0.36 |  0.19 |  0.24 |  0.3  |  0.35 |
 | lepton      | llama2-70b |     0.93 |    0.9 |  0.72 |  1.12 |  0.82 |  0.96 |  1.01 |   1.1 |
 | perplexity | llama-2-70b-chat | 0.37 | 0.42 | 0.29 | 0.70 | 0.34 | 0.52 | 0.63 | 0.66 |
 | replicate   | meta/llama-2-70b-chat |     1.19 |   5.08 |  0.97 | 71.57 |  1.03 |   1.7 | 24.23 | 63.63 |
 | together   | together_ai/togethercomputer/llama-2-70b-chat                                                        | 0.63    | 0.62   | 0.46  | 0.89  | 0.55  | 0.67  | 0.77  | 0.87  |
-i| groq        | llama2-70b-4096                               |     0.22 |   0.23 |  0.17 |  0.36 |  0.19 |  0.24 |  0.3  |  0.35 |
 
 #### 13B Models
 
